@@ -13,3 +13,19 @@ body {
     font-size: 16px;
     line-height: 24px;
 }
+.container, form{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
+.container{
+    width: 100%;
+    padding: 20px;
+}
+.book{
+    padding-bottom: 5px;
+    border-bottom: solid black 0.25px;
+}
+.form{
+    width: fit-content;
+}

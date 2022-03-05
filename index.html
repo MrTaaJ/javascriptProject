@@ -3,22 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Book Project</title>
+    <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
     <div class="container">
       <h1>Awesome books</h1>
-      <div class="book">
-        <p>Lorem Ipsum</p>
-        <p>Testeroo Testyy</p>
-        <button>Remove</button>
+      <div class="book-container">
+        <div class="book">
+          <p>Lorem Ipsum</p>
+          <p>Testeroo Testyy</p>
+          <button class="remove-button">Remove</button>
+        </div>
       </div>
+
       <form class="form">
         <input type="text" name="Title" placeholder="Title" class="title" required/>
         <input type="text" name="Author" placeholder="Author" class="author" required/>
         <button type="submit" class="form-button">Add</button>
       </form>
-
     </div>
+
+    <script type="module" src="./js/index.js"></script>
   </body>
 </html>
