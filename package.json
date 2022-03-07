@@ -2,7 +2,9 @@
   "name": "js-template",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "i": "^0.3.7"
+  },
   "devDependencies": {
     "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^14.x",
