@@ -2,13 +2,20 @@ const title = document.querySelector('.title');
 const author = document.querySelector('.author');
 const newBooks = document.querySelector('.form');
 const bookContainer = document.querySelector('.book-container');
-// const bookContainer = document.querySelectorAll('.book-container');
 
 let booksInfo = [];
 
 const getID = () =>{
   return '_'+Math.random().toString(36).substring(2,9);
 }
+
+const setLocalStorage = (booksInfo) => {
+  localStorage.setItem('storeLocal', JSON.stringify(booksInfo));
+};
+
+const removeLocalStorage = () => {
+  localStorage.removeItem('storeLocal');
+};
 
 const clearData = (title, author) => {
   title.value = "";
@@ -24,7 +31,7 @@ const addData = (title, author) =>{
 
 const updateBook = (newBook) => {
   let displayData = '';
-  newBook.forEach((element, index) => {
+  newBook.forEach((element) => {
       displayData += `<div class="book">
       <p>${element.title}</p>
       <p>${element.author}</p>
@@ -39,7 +46,7 @@ const addBook = (e) => {
   addData(title, author);
   updateBook(booksInfo);
   clearData(title, author);
-  console.log(booksInfo);
+  setLocalStorage(booksInfo);
 }
 
 const removeData = (e) => {
@@ -51,9 +58,21 @@ const removeData = (e) => {
   booksInfo = booksInfo.filter((book)=>{
     return book.id !== id;
   })
+  setLocalStorage(booksInfo);
   updateBook(booksInfo);
   
 }
 
+const getLocal = () => {
+  const returnItem = localStorage.getItem('storeLocal');
+  if (returnItem) {
+    const returnItemObject = JSON.parse(returnItem);
+    updateBook(returnItemObject);
+  }
+};
+
+window.addEventListener('load', getLocal);
+
 newBooks.addEventListener("submit", addBook);
+
 bookContainer.addEventListener("click", removeData);
