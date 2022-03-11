@@ -5,9 +5,11 @@ const bookContainer = document.querySelector('.book-container');
 
 let booksInfo = [];
 
-const getID = () => `_${Math.random().toString(36).substring(2, 9)}`;
+const getID = () => `_${Math.random()
+  .toString(36)
+  .substring(2, 9)}`;
 
-const setLocalStorage = (booksInfo) => {
+const setLocalStorage = booksInfo => {
   localStorage.setItem('storeLocal', JSON.stringify(booksInfo));
 };
 
@@ -23,9 +25,9 @@ const addData = (title, author) => {
   booksInfo.push(bookInfo);
 };
 
-const updateBook = (newBook) => {
+const updateBook = newBook => {
   let displayData = '';
-  newBook.forEach((element) => {
+  newBook.forEach(element => {
     displayData += `<div class="book">
       <p>${element.title}</p>
       <p>${element.author}</p>
@@ -35,7 +37,7 @@ const updateBook = (newBook) => {
   bookContainer.innerHTML = displayData;
 };
 
-const addBook = (e) => {
+const addBook = e => {
   e.preventDefault();
   addData(title, author);
   setLocalStorage(booksInfo);
@@ -43,13 +45,13 @@ const addBook = (e) => {
   clearData(title, author);
 };
 
-const removeData = (e) => {
+const removeData = e => {
   e.preventDefault();
   let id;
   if (e.target.classList.contains('remove-button')) {
     id = e.target.id;
   }
-  booksInfo = booksInfo.filter((book) => book.id !== id);
+  booksInfo = booksInfo.filter(book => book.id !== id);
   setLocalStorage(booksInfo);
   updateBook(booksInfo);
 };
