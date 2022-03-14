@@ -5,9 +5,12 @@ const bookContainer = document.querySelector('.book-container');
 
 let booksInfo = [];
 
-const getID = () => `_${Math.random()
-  .toString(36)
-  .substring(2, 9)}`;
+const getID = () => {
+  const id = `_${Math.random()
+    .toString(36)
+    .substring(2, 9)}`;
+  return id;
+};
 
 const setLocalStorage = booksInfo => {
   localStorage.setItem('storeLocal', JSON.stringify(booksInfo));
