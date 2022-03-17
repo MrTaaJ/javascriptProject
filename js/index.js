@@ -5,7 +5,7 @@ const bookContainer = document.querySelector('.book-container');
 
 let booksInfo = [];
 
-const setLocalStorage = (booksInfo) => {
+const setLocalStorage = booksInfo => {
   localStorage.setItem('storeLocal', JSON.stringify(booksInfo));
 };
 
@@ -16,7 +16,7 @@ const getID = () => {
   return id;
 };
 
-const updateBook = (newBook) => {
+const updateBook = newBook => {
   let displayData = '';
   newBook.forEach((element, index) => {
     displayData += `<tr class="book">
