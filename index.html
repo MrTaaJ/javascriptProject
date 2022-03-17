@@ -9,7 +9,18 @@
   <body>
     <div class="container">
       <h1>Awesome books</h1>
-      <div class="book-container"></div>
+      <table>
+        <thead>
+          <tr id="table-header">
+              <th>S/N</th>
+              <th>Author</th>
+              <th>Title</th>
+              <th></th>
+          </tr>
+        </thead>
+        <tbody class="book-container">
+        </tbody>
+      </table>
       <form class="form">
         <input type="text" name="Title" placeholder="Title" class="title" required />
         <input type="text" name="Author" placeholder="Author" class="author" required />

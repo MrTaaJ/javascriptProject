@@ -5,6 +5,10 @@ const bookContainer = document.querySelector('.book-container');
 
 let booksInfo = [];
 
+const setLocalStorage = (booksInfo) => {
+  localStorage.setItem('storeLocal', JSON.stringify(booksInfo));
+};
+
 const getID = () => {
   const id = `_${Math.random()
     .toString(36)
@@ -12,40 +16,52 @@ const getID = () => {
   return id;
 };
 
-const setLocalStorage = booksInfo => {
-  localStorage.setItem('storeLocal', JSON.stringify(booksInfo));
-};
-
-const clearData = (title, author) => {
-  title.value = '';
-  author.value = '';
-};
-
-const addData = (title, author) => {
-  const bookInfo = { id: getID(), title: '', author: '' };
-  bookInfo.title = title.value;
-  bookInfo.author = author.value;
-  booksInfo.push(bookInfo);
-};
-
-const updateBook = newBook => {
+const updateBook = (newBook) => {
   let displayData = '';
-  newBook.forEach(element => {
-    displayData += `<div class="book">
-      <p>${element.title}</p>
-      <p>${element.author}</p>
-      <button id="${element.id}" class="remove-button">Remove</button>
-      </div>`;
+  newBook.forEach((element, index) => {
+    displayData += `<tr class="book">
+      <td>${index + 1}</td>
+      <td>${element.author}</td>
+      <td>${element.title}</td>
+      <td><button id="${element.id}" class="remove-button">Remove</button></td>
+      </tr>`;
   });
   bookContainer.innerHTML = displayData;
 };
 
+class BooksInfoData {
+  constructor(title, author, id) {
+    this.title = title;
+    this.author = author;
+    this.id = id;
+  }
+
+  clearData() {
+    this.title.value = '';
+    this.author.value = '';
+  }
+
+  addData() {
+    const bookInfo = { id: this.id, title: '', author: '' };
+    bookInfo.title = this.title.value;
+    bookInfo.author = this.author.value;
+    return bookInfo;
+  }
+
+  deleteBook() {
+    booksInfo = booksInfo.filter(book => book.id !== this.id);
+    setLocalStorage(booksInfo);
+    updateBook(booksInfo);
+  }
+}
+
 const addBook = e => {
   e.preventDefault();
-  addData(title, author);
+  const newClassBook = new BooksInfoData(title, author, getID());
+  booksInfo.push(newClassBook.addData());
   setLocalStorage(booksInfo);
   updateBook(booksInfo);
-  clearData(title, author);
+  newClassBook.clearData();
 };
 
 const removeData = e => {
@@ -54,9 +70,8 @@ const removeData = e => {
   if (e.target.classList.contains('remove-button')) {
     id = e.target.id;
   }
-  booksInfo = booksInfo.filter(book => book.id !== id);
-  setLocalStorage(booksInfo);
-  updateBook(booksInfo);
+  const newClassBook = new BooksInfoData(title, author, id);
+  newClassBook.deleteBook();
 };
 
 const getLocal = () => {
