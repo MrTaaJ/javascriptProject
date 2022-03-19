@@ -17,23 +17,32 @@ const getID = () => {
 };
 
 const updateBook = newBook => {
-  let displayData = '';
   newBook.forEach((element, index) => {
-    displayData += `<tr class="book">
-      <td>${index + 1}</td>
-      <td>${element.author}</td>
-      <td>${element.title}</td>
-      <td><button id="${element.id}" class="remove-button">Remove</button></td>
-      </tr>`;
+    const tableRow = document.createElement("tr");
+    const tableData1 = document.createElement("td")
+    const tableData2 = document.createElement("td")
+    const tableData3 = document.createElement("td")
+    const tableData4 = document.createElement("td")
+    const button = document.createElement("button");
+    tableRow.className = "book";
+    button.id = element.id;
+    button.className = 'remove-button';
+    button.innerText = 'Remove';
+    tableData1.innerText = index + 1;
+    tableData2.innerText = element.author;
+    tableData3.innerText = element.title;
+    tableData4.append(button);
+    tableRow.append(tableData1, tableData2, tableData3, tableData4);
+    bookContainer.append(tableRow);
   });
-  bookContainer.innerHTML = displayData;
-};
+}
 
 class BooksInfoData {
   constructor(title, author, id) {
     this.title = title;
     this.author = author;
     this.id = id;
+    this.bookContainer = document.querySelector('.book-container');
   }
 
   clearData() {
@@ -48,10 +57,42 @@ class BooksInfoData {
     return bookInfo;
   }
 
+  updateNumber() {
+    const updateList = Array.from(this.bookContainer.children);
+    let index = 0;
+    updateList.forEach((element) => {
+      element.firstChild.innerText = index + 1;
+      index += 1;
+    });
+  }
+
+  updateNewBook() {
+    const tableRow = document.createElement("tr");
+    const tableData1 = document.createElement("td")
+    const tableData2 = document.createElement("td")
+    const tableData3 = document.createElement("td")
+    const tableData4 = document.createElement("td")
+    const button = document.createElement("button");
+    tableRow.className = "book";
+    button.id = this.id;
+    button.className = 'remove-button';
+    button.innerText = 'Remove';
+    tableData1.innerText = 1;
+    tableData2.innerText = this.author.value;
+    tableData3.innerText = this.title.value;
+    tableData4.append(button);
+    tableRow.append(tableData1, tableData2, tableData3, tableData4);
+    this.bookContainer.append(tableRow);
+    this.updateNumber();
+  }
+
   deleteBook() {
     booksInfo = booksInfo.filter(book => book.id !== this.id);
+    const bookId = document.querySelector(`#${this.id}`);
+    const bookParent = bookId.parentElement.parentElement;
+    this.bookContainer.removeChild(bookParent);
+    this.updateNumber();
     setLocalStorage(booksInfo);
-    updateBook(booksInfo);
   }
 }
 
@@ -60,7 +101,7 @@ const addBook = e => {
   const newClassBook = new BooksInfoData(title, author, getID());
   booksInfo.push(newClassBook.addData());
   setLocalStorage(booksInfo);
-  updateBook(booksInfo);
+  newClassBook.updateNewBook();
   newClassBook.clearData();
 };
 
