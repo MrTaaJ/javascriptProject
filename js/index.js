@@ -18,13 +18,13 @@ const getID = () => {
 
 const updateBook = newBook => {
   newBook.forEach((element, index) => {
-    const tableRow = document.createElement("tr");
-    const tableData1 = document.createElement("td")
-    const tableData2 = document.createElement("td")
-    const tableData3 = document.createElement("td")
-    const tableData4 = document.createElement("td")
-    const button = document.createElement("button");
-    tableRow.className = "book";
+    const tableRow = document.createElement('tr');
+    const tableData1 = document.createElement('td');
+    const tableData2 = document.createElement('td');
+    const tableData3 = document.createElement('td');
+    const tableData4 = document.createElement('td');
+    const button = document.createElement('button');
+    tableRow.className = 'book';
     button.id = element.id;
     button.className = 'remove-button';
     button.innerText = 'Remove';
@@ -35,7 +35,7 @@ const updateBook = newBook => {
     tableRow.append(tableData1, tableData2, tableData3, tableData4);
     bookContainer.append(tableRow);
   });
-}
+};
 
 class BooksInfoData {
   constructor(title, author, id) {
@@ -60,20 +60,20 @@ class BooksInfoData {
   updateNumber() {
     const updateList = Array.from(this.bookContainer.children);
     let index = 0;
-    updateList.forEach((element) => {
+    updateList.forEach(element => {
       element.firstChild.innerText = index + 1;
       index += 1;
     });
   }
 
   updateNewBook() {
-    const tableRow = document.createElement("tr");
-    const tableData1 = document.createElement("td")
-    const tableData2 = document.createElement("td")
-    const tableData3 = document.createElement("td")
-    const tableData4 = document.createElement("td")
-    const button = document.createElement("button");
-    tableRow.className = "book";
+    const tableRow = document.createElement('tr');
+    const tableData1 = document.createElement('td');
+    const tableData2 = document.createElement('td');
+    const tableData3 = document.createElement('td');
+    const tableData4 = document.createElement('td');
+    const button = document.createElement('button');
+    tableRow.className = 'book';
     button.id = this.id;
     button.className = 'remove-button';
     button.innerText = 'Remove';
