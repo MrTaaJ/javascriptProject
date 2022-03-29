@@ -15,11 +15,55 @@ body {
 }
 
 .container {
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+header {
+  width: 100%;
+  background-color: #16a085;
+  height: 60px;
+  margin: 0;
+  position: fixed;
+  z-index: 2;
+  border-bottom: 1px solid rgb(207, 202, 202);
+  color: white;
+  padding: 0 20px;
+}
+
+nav {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logo {
+  font: 400 20px/24px 'Poppins', sans-serif;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+.nav-button {
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+}
+
+.nav-button:hover {
+  background-color: white;
+  color: #16a085;
+}
+
+main {
+  padding-top: 100px;
   display: grid;
   place-items: center;
   gap: 20px;
-  width: 100%;
-  padding: 20px;
+  padding-bottom: 50px;
 }
 
 table {
@@ -41,13 +85,23 @@ tbody tr:hover {
 }
 
 th,
-td {
+td,
+#add-header,
+#contact-header {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
-#table-header {
+th,
+td {
+  text-align: left;
+}
+
+#table-header,
+#add-header,
+.form-button:hover,
+#contact-header {
   background-color: #16a085;
   color: #fff;
 }
@@ -57,17 +111,59 @@ td {
   color: #fff;
 }
 
-form {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 10px;
-}
-
 .book {
   padding-bottom: 5px;
   border-bottom: solid black 0.25px;
 }
 
-.form {
-  width: fit-content;
+.add-book,
+.contact-us {
+  width: 800px;
+  display: grid;
+  place-items: center;
+  gap: 20px;
+}
+
+#add-header,
+#contact-header {
+  width: 100%;
+  text-align: center;
+}
+
+form {
+  width: 500px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+}
+
+.form input {
+  border: #000000 solid 1px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.form input:focus {
+  outline: #16a085 solid 1px;
+}
+
+.form-button {
+  border: #000000 solid 1px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-info {
+  display: flex;
+  flex-flow: column;
+}
+
+footer {
+  position: fixed;
+  width: 100%;
+  padding: 15px;
+  background-color: #16a085;
+  color: white;
+  bottom: 0px;
 }

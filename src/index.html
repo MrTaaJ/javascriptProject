@@ -9,24 +9,83 @@
   <body>
     <div class="container">
       <header class="header">
-        
+        <nav>
+          <a id="logo"
+                href="#home"
+                aria-label="Return Home button"
+                class="nav-button"
+              >
+              Awesome Books
+          </a>
+          <ul>
+            <li>
+              <a
+                href="#book-list"
+                aria-label="Book List button"
+                class="nav-button"
+              >
+                Book List
+              </a>
+            </li>
+            <li>
+              <a
+                href="#add-book"
+                aria-label="Add Book button"
+                class="nav-button"
+              >
+                Add Book
+              </a>
+            </li>
+            <li>
+              <a
+                href="#contact-us"
+                aria-label="Contact Us button"
+                class="nav-button"
+              >
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </nav>
       </header>
-      <h1>Awesome books</h1>
-      <table>
-        <thead>
-          <tr id="table-header">
-            <th>Author</th>
-            <th>Title</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody class="book-container"></tbody>
-      </table>
-      <form class="form">
-        <input type="text" name="title" placeholder="Title" class="title" required />
-        <input type="text" name="author" placeholder="Author" class="author" required />
-        <button type="submit" class="form-button">Add</button>
-      </form>
+
+      <main>
+        <table>
+          <thead>
+            <tr id="table-header">
+              <th>Author</th>
+              <th>Title</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="book-container"></tbody>
+        </table>
+      </main>
+
+      <div class="add-book">
+        <h1 id="add-header">Add New Books</h1>
+        <form class="form">
+          <input type="text" name="title" placeholder="Title" class="title" required />
+          <input type="text" name="author" placeholder="Author" class="author" required />
+          <button type="submit" class="form-button">Add</button>
+        </form>
+      </div>
+
+      <div class="contact-us">
+        <h1 id="contact-header">Contact Information</h1>
+        <p>Do have any questions or you just want to say "Hello"?<br>
+        You can reach out to us!
+        </p>
+        <ul class="contact-info">
+          <l1>Our e-mail: mail@mail.com</l1>
+          <l1>Our phone number: 07030004321</l1>
+          <l1>Our address: Everywhere and Nowhere</l1>
+        </ul>
+      </div>
+
+      <footer>
+        <h3>Copyright</h2>
+      </footer>
     </div>
     <script type="module" src="./js/index.js"></script>
   </body>
