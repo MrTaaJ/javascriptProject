@@ -73,6 +73,12 @@ table {
   box-shadow: 2px 2px 12px rgb(0 0 0 / 20%), -1px -1px 8px rgb(0 0 0 / 20%);
 }
 
+.table,
+.add-book,
+.contact-us {
+  display: none;
+}
+
 tr {
   transition: all 0.2s ease-in;
   cursor: pointer;
@@ -165,5 +171,9 @@ footer {
   padding: 15px;
   background-color: #16a085;
   color: white;
-  bottom: 0px;
+  bottom: 0;
+}
+
+.active {
+  display: block;
 }

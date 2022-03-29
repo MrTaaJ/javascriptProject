@@ -1,3 +1,48 @@
+import AddBook from './addBook.js';
+import BookList from './bookList.js';
+import ContactUs from './contactUs.js';
+import Footer from './footer.js';
+import Header from './header.js';
+
+const frag = document.createDocumentFragment();
+
+const mainSection = document.createElement('main');
+mainSection.className = 'main';
+mainSection.id = 'main';
+const main = section => mainSection.appendChild(section);
+main(BookList.callBookList());
+frag.appendChild(Header.callHeader());
+frag.appendChild(mainSection);
+frag.appendChild(Footer.callFooter());
+
+const content = document.querySelector('.container');
+
+content.appendChild(frag);
+
+const linksUl = document.querySelector('.nav-container');
+const links = document.querySelectorAll('.nav-button');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const title = document.querySelector('.title');
 const author = document.querySelector('.author');
 const newBooks = document.querySelector('.form');
@@ -31,8 +76,8 @@ class BooksInfoData {
 
   addData() {
     const bookInfo = { id: this.id, title: '', author: '' };
-    bookInfo.title = this.title.value;
-    bookInfo.author = this.author.value;
+    bookInfo.title = this.title;
+    bookInfo.author = this.author;
     return bookInfo;
   }
 
@@ -65,7 +110,7 @@ class BooksInfoData {
 
 const addBook = e => {
   e.preventDefault();
-  const newClassBook = new BooksInfoData(title, author, getID(), bookContainer);
+  const newClassBook = new BooksInfoData(title.value, author.value, getID(), bookContainer);
   booksInfo.push(newClassBook.addData());
   setLocalStorage(booksInfo);
   newClassBook.updateNewBook(newClassBook.addData());
@@ -96,6 +141,37 @@ const getLocal = () => {
     updateBook(booksInfo);
   }
 };
+
+
+const switched = (newChild, currentTarget) => {
+  const dex = document.querySelector('#main');
+  dex.removeChild(dex.childNodes[0]);
+  dex.appendChild(newChild);
+  for (let i = 0; i < links.length; i += 1) {
+    const {
+      classList,
+      dataset: { target },
+    } = links[i];
+    /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
+    currentTarget === target ? classList.add('active') : classList.remove('active');
+  }
+};
+
+const switchTab = e => {
+  if (e.target.classList.contains('nav-button')) {
+    const tabObject = {
+      bookList: BookList.callBookList(),
+      addBook: AddBook.callAddBook(),
+      contactUs: ContactUs.callContactUs(),
+    };
+    const currentTarget = e.target.dataset.target;
+    console.log(e.target.dataset);
+    const newChild = tabObject[currentTarget];
+    switched(newChild, currentTarget);
+  }
+};
+
+linksUl.addEventListener('click', switchTab);
 
 window.addEventListener('load', getLocal);
 

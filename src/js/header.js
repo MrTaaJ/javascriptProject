@@ -8,15 +8,17 @@ class Header {
                 href="#home"
                 aria-label="Return Home button"
                 class="nav-button"
+                data-target="bookList"
               >
               Awesome Books
           </a>
-          <ul>
+          <ul class="nav-container">
             <li>
               <a
                 href="#book-list"
                 aria-label="Book List button"
                 class="nav-button"
+                data-target="bookList"
               >
                 Book List
               </a>
@@ -26,6 +28,7 @@ class Header {
                 href="#add-book"
                 aria-label="Add Book button"
                 class="nav-button"
+                data-target="addBook"
               >
                 Add Book
               </a>
@@ -35,6 +38,7 @@ class Header {
                 href="#contact-us"
                 aria-label="Contact Us button"
                 class="nav-button"
+                data-target="contactUs"
               >
                 Contact Us
               </a>
