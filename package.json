@@ -12,7 +12,8 @@
     "stylelint-config-recommended": "^6.x",
     "stylelint-config-standard": "^24.x",
     "stylelint-csstree-validator": "^1.x",
-    "stylelint-scss": "^3.x"
+    "stylelint-scss": "^3.x",
+    "webpack-cli": "^4.9.2"
   },
   "scripts": {
     "format": "npx prettier  --write **/*.{html,js,json,md,json,yaml,yml,jsx}",
