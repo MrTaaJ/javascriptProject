@@ -1,9 +1,9 @@
-import AddBook from './addBook.js';
-import BookList from './bookList.js';
-import ContactUs from './contactUs.js';
-import Footer from './footer.js';
-import Header from './header.js';
-import AddNewBook from './addNewBookApp.js';
+import AddBook from './addBook';
+import BookList from './bookList';
+import ContactUs from './contactUs';
+import Footer from './footer';
+import Header from './header';
+import AddNewBook from './addNewBookApp';
 
 const frag = document.createDocumentFragment();
 
@@ -22,9 +22,13 @@ content.appendChild(frag);
 
 const linksUl = document.querySelector('.nav-container');
 
-const title = document.querySelector('.title');
-const author = document.querySelector('.author');
-const bookContainer = document.querySelector('.book-container');
+const queryActivator = () => {
+  const title = document.querySelector('.title');
+  const author = document.querySelector('.author');
+  const bookContainer = document.querySelector('.book-container');
+
+  return { title, author, bookContainer };
+};
 
 let booksInfo = [];
 
@@ -43,7 +47,7 @@ const removeData = e => {
   e.preventDefault();
   if (e.target.classList.contains('remove-button')) {
     const { id } = e.target;
-    const bookContainer = document.querySelector('.book-container');
+    const { title, author, bookContainer } = queryActivator();
     const newClassBook = new AddNewBook(title, author, id, bookContainer);
     newClassBook.deleteBook();
     booksInfo = booksInfo.filter(book => book.id !== id);
@@ -52,21 +56,29 @@ const removeData = e => {
 };
 
 const updateBook = newBook => {
-  const bookContainer = document.querySelector('.book-container');
+  const { title, author, bookContainer } = queryActivator();
   const newClassBook = new AddNewBook(title, author, getID(), bookContainer);
   newBook.forEach(element => {
     newClassBook.updateNewBook(element);
   });
 };
 
+const switchedBookList = () => {
+  const dex = document.querySelector('#main');
+  dex.removeChild(dex.childNodes[0]);
+  dex.appendChild(BookList.callBookList());
+  const { bookContainer } = queryActivator();
+  bookContainer.addEventListener('click', removeData);
+  updateBook(booksInfo);
+};
+
 const addBook = e => {
   e.preventDefault();
-  const title = document.querySelector('.title');
-  const author = document.querySelector('.author');
+  const { title, author, bookContainer } = queryActivator();
   const newClassBook = new AddNewBook(title.value, author.value, getID(), bookContainer);
   booksInfo.push(newClassBook.addData());
   setLocalStorage(booksInfo);
-  switched(BookList.callBookList(), 'bookList');
+  switchedBookList();
   newClassBook.updateNewBook(newClassBook.addData());
 };
 
@@ -75,7 +87,7 @@ const switched = (newChild, currentTarget) => {
   dex.removeChild(dex.childNodes[0]);
   dex.appendChild(newChild);
   if (currentTarget === 'bookList') {
-    const bookContainer = document.querySelector('.book-container');
+    const { bookContainer } = queryActivator();
     bookContainer.addEventListener('click', removeData);
     updateBook(booksInfo);
   } else if (currentTarget === 'addBook') {
@@ -99,6 +111,7 @@ const switchTab = e => {
 
 const getLocal = () => {
   const returnItem = localStorage.getItem('storeLocal');
+  const { bookContainer } = queryActivator();
   if (returnItem) {
     booksInfo = JSON.parse(returnItem);
     updateBook(booksInfo);
