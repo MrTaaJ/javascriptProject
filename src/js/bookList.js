@@ -7,6 +7,7 @@ class BookList {
             <tr id="table-header">
               <th>Author</th>
               <th>Title</th>
+              <th>Genre</th>
               <th></th>
             </tr>
         </thead>

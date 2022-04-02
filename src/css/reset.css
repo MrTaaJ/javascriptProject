@@ -46,7 +46,8 @@ nav ul li {
   display: inline-block;
 }
 
-.nav-button {
+.nav-button,
+.button {
   padding: 10px;
   text-decoration: none;
   color: white;
@@ -120,7 +121,8 @@ td {
 #table-header,
 #add-header,
 .form-button:hover,
-#contact-header {
+#contact-header,
+.button {
   background-color: #16a085;
   color: #fff;
 }
@@ -136,7 +138,8 @@ td {
 }
 
 .add-book,
-.contact-us {
+.contact-us,
+.success {
   width: 800px;
   display: grid;
   place-items: center;
@@ -166,9 +169,24 @@ form {
   outline: #16a085 solid 1px;
 }
 
-.contact-info {
+.contact-info,
+.button-compound {
   display: flex;
   flex-flow: column;
+}
+
+.success-header {
+  background-color: #98f0de;
+  color: #000000;
+}
+
+.success-author {
+  font: 400 20px/24px Poppins, sans-serif;
+}
+
+.button:hover {
+  background-color: #98f0de;
+  color: #fff;
 }
 
 footer {

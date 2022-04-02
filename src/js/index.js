@@ -4,6 +4,8 @@ import ContactUs from './contactUs';
 import Footer from './footer';
 import Header from './header';
 import AddNewBook from './addNewBookApp';
+import NewBookAddedSuccess from './newBookAdded';
+import getFormValues from './utils/getFormValues';
 
 const frag = document.createDocumentFragment();
 
@@ -24,13 +26,14 @@ const linksUl = document.querySelector('.nav-container');
 
 const queryActivator = () => {
   const title = document.querySelector('.title');
-  const author = document.querySelector('.author');
+  const buttonCompound = document.querySelector('.button-compound');
   const bookContainer = document.querySelector('.book-container');
 
-  return { title, author, bookContainer };
+  return { title, bookContainer, buttonCompound };
 };
 
 let booksInfo = [];
+let tempBook;
 
 const setLocalStorage = booksInfo => {
   localStorage.setItem('storeLocal', JSON.stringify(booksInfo));
@@ -47,39 +50,51 @@ const removeData = e => {
   e.preventDefault();
   if (e.target.classList.contains('remove-button')) {
     const { id } = e.target;
-    const { title, author, bookContainer } = queryActivator();
-    const newClassBook = new AddNewBook(title, author, id, bookContainer);
-    newClassBook.deleteBook();
+    AddNewBook.deleteBook(id);
     booksInfo = booksInfo.filter(book => book.id !== id);
     setLocalStorage(booksInfo);
   }
 };
 
 const updateBook = newBook => {
-  const { title, author, bookContainer } = queryActivator();
-  const newClassBook = new AddNewBook(title, author, getID(), bookContainer);
+  //const { title, author, bookContainer } = queryActivator();
+  //const newClassBook = new AddNewBook(title, author, getID(), bookContainer);
   newBook.forEach(element => {
-    newClassBook.updateNewBook(element);
+    AddNewBook.updateNewBook(element);
   });
 };
+
+const switchData = (e) => {
+  if (e.target.classList.contains('button-compound')) {
+    const tabObject = {
+      editBook: BookList.callBookList(),
+      addBook: AddBook.callAddBook(),
+      bookList: BookList.callBookList(),
+    };
+    const currentTarget = e.target.dataset.target;
+    const newChild = tabObject[currentTarget];
+    switched(newChild, currentTarget);
+  }
+}
 
 const switchedBookList = () => {
   const dex = document.querySelector('#main');
   dex.removeChild(dex.childNodes[0]);
-  dex.appendChild(BookList.callBookList());
-  const { bookContainer } = queryActivator();
+  dex.appendChild(NewBookAddedSuccess.callNewBookAddedSuccess(tempBook));
+  const { bookContainer, buttonCompound } = queryActivator();
   bookContainer.addEventListener('click', removeData);
-  updateBook(booksInfo);
+  buttonCompound.addEventListener('click', switchData);
+  // updateBook(booksInfo);
 };
 
 const addBook = e => {
   e.preventDefault();
-  const { title, author, bookContainer } = queryActivator();
-  const newClassBook = new AddNewBook(title.value, author.value, getID(), bookContainer);
-  booksInfo.push(newClassBook.addData());
+  const bookInputs = e.target.querySelectorAll('.book-input');
+  tempBook = getFormValues(bookInputs);
+  booksInfo.push(tempBook);
   setLocalStorage(booksInfo);
   switchedBookList();
-  newClassBook.updateNewBook(newClassBook.addData());
+  // newClassBook.updateNewBook(newClassBook.addData());
 };
 
 const switched = (newChild, currentTarget) => {

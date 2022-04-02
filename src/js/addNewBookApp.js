@@ -1,9 +1,13 @@
 class AddNewBook {
-  constructor(title, author, id, container) {
+  constructor(title, author, id) {
     this.title = title;
     this.author = author;
     this.id = id;
-    this.container = container;
+    // this.container = container;
+  }
+
+  static container() {
+    return document.querySelector('.book-container');
   }
 
   clearData() {
@@ -18,12 +22,13 @@ class AddNewBook {
     return bookInfo;
   }
 
-  updateNewBook(newBook) {
-    const { id, title, author } = newBook;
+  static updateNewBook(newBook) {
+    const { id, title, author, genre } = newBook;
     const tableRow = document.createElement('tr');
     const tableData1 = document.createElement('td');
     const tableData2 = document.createElement('td');
     const tableData3 = document.createElement('td');
+    const tableData4 = document.createElement('td');
     const button = document.createElement('button');
     tableRow.className = 'book';
     button.id = id;
@@ -31,15 +36,16 @@ class AddNewBook {
     button.innerText = 'Remove';
     tableData1.innerText = author;
     tableData2.innerText = title;
-    tableData3.append(button);
+    tableData3.innerText = genre;
+    tableData4.append(button);
     tableRow.append(tableData1, tableData2, tableData3);
-    this.container.append(tableRow);
+    this.container().append(tableRow);
   }
 
-  deleteBook() {
-    const bookId = document.querySelector(`#${this.id}`);
+  static deleteBook(id) {
+    const bookId = document.querySelector(`#${id}`);
     const bookParent = bookId.parentElement.parentElement;
-    this.container.removeChild(bookParent);
+    this.container().removeChild(bookParent);
   }
 }
 
