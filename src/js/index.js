@@ -1,6 +1,6 @@
+import { switched, switchTab } from './switchTab';
 import AddBook from './addBook';
 import BookList from './bookList';
-import ContactUs from './contactUs';
 import Footer from './footer';
 import Header from './header';
 import AddNewBook from './addNewBookApp';
@@ -29,7 +29,7 @@ const queryActivator = () => {
   const buttonCompound = document.querySelector('.button-compound');
   const bookContainer = document.querySelector('.book-container');
 
-  return { title, bookContainer, buttonCompound };
+  return { title, buttonCompound, bookContainer };
 };
 
 let booksInfo = [];
@@ -39,12 +39,12 @@ const setLocalStorage = booksInfo => {
   localStorage.setItem('storeLocal', JSON.stringify(booksInfo));
 };
 
-const getID = () => {
-  const id = `_${Math.random()
-    .toString(36)
-    .substring(2, 9)}`;
-  return id;
-};
+// const getID = () => {
+//   const id = `_${Math.random()
+//     .toString(36)
+//     .substring(2, 9)}`;
+//   return id;
+// };
 
 const removeData = e => {
   e.preventDefault();
@@ -65,7 +65,8 @@ const updateBook = newBook => {
 };
 
 const switchData = (e) => {
-  if (e.target.classList.contains('button-compound')) {
+  console.log(e.target.classList)
+  if (e.target.classList.contains('button')) {
     const tabObject = {
       editBook: BookList.callBookList(),
       addBook: AddBook.callAddBook(),
@@ -73,6 +74,7 @@ const switchData = (e) => {
     };
     const currentTarget = e.target.dataset.target;
     const newChild = tabObject[currentTarget];
+    console.log(currentTarget);
     switched(newChild, currentTarget);
   }
 }
@@ -81,8 +83,9 @@ const switchedBookList = () => {
   const dex = document.querySelector('#main');
   dex.removeChild(dex.childNodes[0]);
   dex.appendChild(NewBookAddedSuccess.callNewBookAddedSuccess(tempBook));
-  const { bookContainer, buttonCompound } = queryActivator();
-  bookContainer.addEventListener('click', removeData);
+  const { buttonCompound } = queryActivator();
+  // bookContainer.addEventListener('click', removeData);
+  console.log(buttonCompound);
   buttonCompound.addEventListener('click', switchData);
   // updateBook(booksInfo);
 };
@@ -91,37 +94,11 @@ const addBook = e => {
   e.preventDefault();
   const bookInputs = e.target.querySelectorAll('.book-input');
   tempBook = getFormValues(bookInputs);
+  console.log(tempBook)
   booksInfo.push(tempBook);
   setLocalStorage(booksInfo);
   switchedBookList();
   // newClassBook.updateNewBook(newClassBook.addData());
-};
-
-const switched = (newChild, currentTarget) => {
-  const dex = document.querySelector('#main');
-  dex.removeChild(dex.childNodes[0]);
-  dex.appendChild(newChild);
-  if (currentTarget === 'bookList') {
-    const { bookContainer } = queryActivator();
-    bookContainer.addEventListener('click', removeData);
-    updateBook(booksInfo);
-  } else if (currentTarget === 'addBook') {
-    const newBooks = document.querySelector('.form');
-    newBooks.addEventListener('submit', addBook);
-  }
-};
-
-const switchTab = e => {
-  if (e.target.classList.contains('nav-button')) {
-    const tabObject = {
-      bookList: BookList.callBookList(),
-      addBook: AddBook.callAddBook(),
-      contactUs: ContactUs.callContactUs(),
-    };
-    const currentTarget = e.target.dataset.target;
-    const newChild = tabObject[currentTarget];
-    switched(newChild, currentTarget);
-  }
 };
 
 const getLocal = () => {
@@ -137,3 +114,5 @@ const getLocal = () => {
 linksUl.addEventListener('click', switchTab);
 
 window.addEventListener('load', getLocal);
+
+export { addBook, removeData };

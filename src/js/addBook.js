@@ -7,13 +7,13 @@ class AddBook {
         <form class="form">
           <input type="text" name="title" placeholder="Title" class="book-input title" required />
           <input type="text" name="author" placeholder="Author" class="book-input author" required />
-          <select class = "book-input genre">
+          <select name="genre" class = "book-input genre">
                 <option value = "choose" selected>Select Genre</option>
                 <option value = "Fiction">Fiction</option>
                 <option value = "Non-Fiction">Non-Fiction</option>
-                <option value = "other-genre">Third Semester </option>
+                <option value = "other-genre">Other Category</option>
           </select>
-          <input type="text" name="category" placeholder="Category" class="book-input" required />
+          <input type="text" name="category" placeholder="Enter Category" class="book-input other-category" required />
           <button type="submit" class="form-button">Add</button>
         </form>
         `;

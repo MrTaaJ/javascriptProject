@@ -8,6 +8,8 @@ class BookList {
               <th>Author</th>
               <th>Title</th>
               <th>Genre</th>
+              <th>Category</th>
+              <th></th>
               <th></th>
             </tr>
         </thead>

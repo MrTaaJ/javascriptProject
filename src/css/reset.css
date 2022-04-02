@@ -127,8 +127,18 @@ td {
   color: #fff;
 }
 
+.remove-button,
+.edit-button {
+  padding: 5px;
+}
+
 .remove-button:hover {
   background-color: red;
+  color: #fff;
+}
+
+.edit-button:hover {
+  background-color: #16a085;
   color: #fff;
 }
 
@@ -159,7 +169,8 @@ form {
   gap: 10px;
 }
 
-.form input {
+.form input,
+.form select {
   border: #000 solid 1px;
   border-radius: 5px;
   padding: 10px;
@@ -168,6 +179,13 @@ form {
 .form input:focus {
   outline: #16a085 solid 1px;
 }
+
+.fiction-category,
+.non-fiction-category,
+.other-category {
+  display: none;
+}
+
 
 .contact-info,
 .button-compound {
@@ -199,5 +217,5 @@ footer {
 }
 
 .active {
-  display: grid;
+  display: block;
 }
