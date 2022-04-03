@@ -1,8 +1,8 @@
 class EditBook {
-    static callEditBook() {
-      const formSection = document.createElement('div');
-      formSection.className = 'edit-book';
-      formSection.innerHTML = `
+  static callEditBook() {
+    const formSection = document.createElement('div');
+    formSection.className = 'edit-book';
+    formSection.innerHTML = `
           <h1 id="add-header">Edit Books</h1>
           <form class="form">
             <input type="text" name="title" placeholder="Title" class="book-input title" required />
@@ -17,10 +17,9 @@ class EditBook {
             <button type="submit" class="form-button">Add</button>
           </form>
           `;
-  
-      return formSection;
-    }
+
+    return formSection;
   }
-  
-  export default EditBook;
-  
+}
+
+export default EditBook;

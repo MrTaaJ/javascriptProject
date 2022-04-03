@@ -1,4 +1,4 @@
-const getFormValues = (inputs) => {
+const getFormValues = inputs => {
   const getID = () => {
     const id = `_${Math.random()
       .toString(36)

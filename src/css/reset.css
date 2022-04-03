@@ -52,9 +52,11 @@ nav ul li {
   text-decoration: none;
   color: white;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-.nav-button:hover {
+.nav-button:hover,
+.button {
   background-color: white;
   color: #16a085;
 }
@@ -121,8 +123,7 @@ td {
 #table-header,
 #add-header,
 .form-button:hover,
-#contact-header,
-.button {
+#contact-header {
   background-color: #16a085;
   color: #fff;
 }
@@ -130,6 +131,7 @@ td {
 .remove-button,
 .edit-button {
   padding: 5px;
+  cursor: pointer;
 }
 
 .remove-button:hover {
@@ -180,22 +182,9 @@ form {
   outline: #16a085 solid 1px;
 }
 
-.fiction-category,
-.non-fiction-category,
-.other-category {
-  display: none;
-}
-
-
-.contact-info,
-.button-compound {
+.contact-info {
   display: flex;
   flex-flow: column;
-}
-
-.success-header {
-  background-color: #98f0de;
-  color: #000000;
 }
 
 .success-author {
@@ -203,8 +192,8 @@ form {
 }
 
 .button:hover {
-  background-color: #98f0de;
-  color: #fff;
+  color: white;
+  background-color: #16a085;
 }
 
 footer {

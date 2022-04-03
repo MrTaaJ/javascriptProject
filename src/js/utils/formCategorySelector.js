@@ -1,6 +1,5 @@
 const fictionCategory = `
-<select name="category" class = "book-input fiction-category active">
-    <option value = "choose" selected>Select Category</option>
+    <option value = "Non Selected" selected>Select Category</option>
     <option value = "Action & Adventure">Action & Adventure</option>
     <option value = "Comic">Comic</option>
     <option value = "Classic">Classic</option>
@@ -9,13 +8,11 @@ const fictionCategory = `
     <option value = "Horror">Horror</option>
     <option value = "Literal Fiction">Literal Fiction</option>
     <option value = "Romance">Romance</option>
-    <option value = "Sci-Fi & Fantasy">Sci-Fi & Fantasy</option>                            
-</select>
+    <option value = "Sci-Fi & Fantasy">Sci-Fi & Fantasy</option>
 `;
 
 const nonFictionCategory = `
-<select name="category" class = "book-input non-fiction-category">
-    <option value = "choose" selected>Select Category</option>              
+    <option value = "Non Selected" selected>Select Category</option>              
     <option value = "Biographies">Biographies</option>
     <option value = "Business">Business</option>
     <option value = "Computer & Tech">Computer & Tech</option>
@@ -25,10 +22,22 @@ const nonFictionCategory = `
     <option value = "History">History</option>
     <option value = "Self-Help">Self-Help</option>
     <option value = "Science & Math">Science & Math</option>
-</select>
-`
-const otherCategory = `
-<input type="text" name="category" placeholder="Enter Category" class="book-input other-category" required />
-`
+`;
 
-export { fictionCategory, nonFictionCategory, otherCategory };
+const emptyCategory = `
+    <option value = "Non Selected" selected>Select Category</option>
+`;
+
+const selectCategory = () => {
+  const genreChange = document.querySelector('.genre');
+  const category = document.querySelector('.category');
+  if (genreChange.value === 'Fiction') {
+    category.innerHTML = fictionCategory;
+  } else if (genreChange.value === 'Non-Fiction') {
+    category.innerHTML = nonFictionCategory;
+  } else if (genreChange.value === 'Non Selected') {
+    category.innerHTML = emptyCategory;
+  }
+};
+
+export default selectCategory;

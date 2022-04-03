@@ -3,27 +3,15 @@ class AddNewBook {
     this.title = title;
     this.author = author;
     this.id = id;
-    // this.container = container;
   }
 
   static container() {
     return document.querySelector('.book-container');
   }
 
-  clearData() {
-    this.title.value = '';
-    this.author.value = '';
-  }
-
-  addData() {
-    const bookInfo = { id: this.id, title: '', author: '' };
-    bookInfo.title = this.title;
-    bookInfo.author = this.author;
-    return bookInfo;
-  }
-
   static updateNewBook(newBook) {
-    const { id, title, author, genre, category } = newBook;
+    const { id, title, author } = newBook;
+    const { genre, category } = newBook;
     const tableRow = document.createElement('tr');
     const tableData1 = document.createElement('td');
     const tableData2 = document.createElement('td');
