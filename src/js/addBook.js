@@ -14,7 +14,7 @@ class AddBook {
           </select>
           <select name="category" class = "book-input category">
             <option value = "Non Selected" selected>Select Category</option>                            
-        </select>
+          </select>
           <button type="submit" class="form-button">Add</button>
         </form>
         `;

@@ -1,4 +1,4 @@
-import { switchTab, onLoadUpdate, removeData } from './switchTab';
+import appControl from './appController';
 import returnLocalItem from './utils/returnLocalItem';
 import BookList from './bookList';
 import Footer from './footer';
@@ -21,15 +21,18 @@ content.appendChild(frag);
 
 const linksUl = document.querySelector('.nav-container');
 
+const appController = appControl();
+
 const getLocal = () => {
+  appController.saveOnload();
   const returnItem = returnLocalItem();
   const bookContainer = document.querySelector('.book-container');
   if (returnItem) {
-    onLoadUpdate(returnItem);
-    bookContainer.addEventListener('click', removeData);
+    appController.onLoadUpdate(returnItem);
+    bookContainer.addEventListener('click', appController.manipulateData);
   }
 };
 
-linksUl.addEventListener('click', switchTab);
+linksUl.addEventListener('click', appController.switchTab);
 
 window.addEventListener('load', getLocal);
