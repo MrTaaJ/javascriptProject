@@ -2,7 +2,8 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+// const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
@@ -50,8 +51,9 @@ module.exports = {
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: '[name].css' }),
-    new FixStyleOnlyEntriesPlugin(),
+    new MiniCssExtractPlugin({ filename: '[name].[chunkhash:8].css' }),
+    new RemoveEmptyScriptsPlugin(),
+    // new FixStyleOnlyEntriesPlugin(),
     new OptimizeCSSAssetsPlugin({}),
     new HtmlWebPackPlugin({
       template: './src/index.html',
