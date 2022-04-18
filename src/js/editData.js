@@ -22,6 +22,7 @@ const editData = (ids, booksInfo, callback) => {
     e.preventDefault();
     const bookInputs = e.target.querySelectorAll('.book-input');
     tempBook = getFormValues(bookInputs);
+    tempBook.id = ids;
     newBooksInfo.splice(booksInfo.indexOf(bookArray), 1, tempBook);
     callback(newBooksInfo);
     const { title, author } = tempBook;

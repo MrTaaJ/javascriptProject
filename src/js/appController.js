@@ -8,6 +8,8 @@ import getFormValues from './utils/getFormValues';
 import clearFormValues from './utils/clearFormValues';
 import removePopUp from './utils/removePopUp';
 import addPopUp from './utils/addPopUp';
+import loadPage from './utils/loadPage';
+import updateBook from './utils/updateBook';
 import AddNewBook from './addNewBookApp';
 import returnLocalItem from './utils/returnLocalItem';
 import setLocalStorage from './utils/setLocalItem';
@@ -37,12 +39,6 @@ const appControl = () => {
     }
   };
 
-  const updateBook = newBook => {
-    newBook.forEach(element => {
-      AddNewBook.updateNewBook(element);
-    });
-  };
-
   const onLoadUpdate = booksInfo => {
     updateBook(booksInfo);
   };
@@ -52,8 +48,7 @@ const appControl = () => {
       const tabObject = BookList.callBookList();
       removePopUp();
       const dex = document.querySelector('#main');
-      dex.removeChild(dex.childNodes[0]);
-      dex.appendChild(tabObject);
+      loadPage(dex, tabObject);
       updateBook(booksInfo);
       document.querySelector('.book-container').addEventListener('click', manipulateData);
     }
@@ -82,8 +77,7 @@ const appControl = () => {
 
   const switched = (newChild, currentTarget) => {
     const dex = document.querySelector('#main');
-    dex.removeChild(dex.childNodes[0]);
-    dex.appendChild(newChild);
+    loadPage(dex, newChild);
     if (currentTarget === 'bookList') {
       const bookContainer = document.querySelector('.book-container');
       bookContainer.addEventListener('click', manipulateData);
