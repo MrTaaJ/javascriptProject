@@ -1,11 +1,6 @@
-const getFormValues = inputs => {
-  const getID = () => {
-    const id = `_${Math.random()
-      .toString(36)
-      .substring(2, 9)}`;
-    return id;
-  };
+import getID from './getID';
 
+const getFormValues = inputs => {
   const inputValues = { id: getID() };
   inputs.forEach(input => {
     inputValues[input.name] = input.value;
