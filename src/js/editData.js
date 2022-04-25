@@ -6,10 +6,10 @@ import addBookController from './utils/addBookController';
 import EditBookSuccess from './editBookSuccess';
 
 const editData = (ids, booksInfo, callback) => {
-  const bookArray = booksInfo.find(book => book.id === ids);
+  const newBooksInfo = [...booksInfo];
+  const bookArray = newBooksInfo.find(book => book.id === ids);
   const dex = document.querySelector('#main');
   let tempBook;
-  const newBooksInfo = booksInfo;
 
   const switchedBookList = () => {
     removePopUp();
@@ -23,7 +23,7 @@ const editData = (ids, booksInfo, callback) => {
     const bookInputs = e.target.querySelectorAll('.book-input');
     tempBook = getFormValues(bookInputs);
     tempBook.id = ids;
-    newBooksInfo.splice(booksInfo.indexOf(bookArray), 1, tempBook);
+    newBooksInfo.splice(newBooksInfo.indexOf(bookArray), 1, tempBook);
     callback(newBooksInfo);
     const { title, author } = tempBook;
     const { genre, category } = tempBook;

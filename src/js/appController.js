@@ -10,7 +10,7 @@ import removePopUp from './utils/removePopUp';
 import addPopUp from './utils/addPopUp';
 import loadPage from './utils/loadPage';
 import updateBook from './utils/updateBook';
-import AddNewBook from './addNewBookApp';
+import deleteBook from './deleteBook';
 import returnLocalItem from './utils/returnLocalItem';
 import setLocalStorage from './utils/setLocalItem';
 
@@ -26,7 +26,7 @@ const appControl = () => {
     e.preventDefault();
     if (e.target.classList.contains('remove-button')) {
       const { id } = e.target;
-      AddNewBook.deleteBook(id);
+      deleteBook(id);
       booksInfo = booksInfo.filter(book => book.id !== id);
       setLocalStorage(booksInfo);
     } else if (e.target.classList.contains('edit-button')) {
@@ -69,7 +69,7 @@ const appControl = () => {
     e.preventDefault();
     const bookInputs = e.target.querySelectorAll('.book-input');
     tempBook = getFormValues(bookInputs);
-    booksInfo.push(tempBook);
+    booksInfo = [...booksInfo, tempBook];
     setLocalStorage(booksInfo);
     switchedBookList();
     clearFormValues(bookInputs);
@@ -80,8 +80,8 @@ const appControl = () => {
     loadPage(dex, newChild);
     if (currentTarget === 'bookList') {
       const bookContainer = document.querySelector('.book-container');
-      bookContainer.addEventListener('click', manipulateData);
       updateBook(booksInfo);
+      bookContainer.addEventListener('click', manipulateData);
     } else if (currentTarget === 'addBook') {
       addBookController(addBook);
     }

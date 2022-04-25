@@ -27,7 +27,7 @@ const getLocal = () => {
   appController.saveOnload();
   const returnItem = returnLocalItem();
   const bookContainer = document.querySelector('.book-container');
-  if (returnItem) {
+  if (returnItem.length > 0) {
     appController.onLoadUpdate(returnItem);
     bookContainer.addEventListener('click', appController.manipulateData);
   }
