@@ -3,16 +3,32 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.4",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^10.2.4",
+    "css-loader": "^6.7.1",
     "eslint": "^8.x",
     "eslint-config-airbnb-base": "^15.x",
     "eslint-plugin-import": "^2.x",
     "hint": "^6.x",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "path": "^0.12.7",
     "prettier": "^1.19.1",
+    "style-loader": "^3.3.1",
     "stylelint": "^14.x",
     "stylelint-config-recommended": "^6.x",
     "stylelint-config-standard": "^24.x",
     "stylelint-csstree-validator": "^1.x",
-    "stylelint-scss": "^3.x"
+    "stylelint-scss": "^3.x",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-fix-style-only-entries": "^0.6.1"
   },
   "scripts": {
     "format": "npx prettier  --write **/*.{html,js,json,md,json,yaml,yml,jsx}",
@@ -22,11 +38,12 @@
     "stylelint": "npx stylelint **/*.css --fix",
     "stylelint:check": "npx stylelint **/*.css",
     "eslint": "npx eslint . --fix",
-    "eslint:check": "npx eslint ."
+    "eslint:check": "npx eslint .",
+    "build:watch": "npx webpack --watch",
+    "build": "npx webpack --mode production",
+    "dev": "webpack serve"
   },
-  "browserslist": [
-    "defaults",
-    "not IE 11",
-    "maintained node versions"
-  ]
+  "dependencies": {
+    "webpack-remove-empty-scripts": "^0.8.0"
+  }
 }
